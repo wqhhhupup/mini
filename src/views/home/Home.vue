@@ -85,12 +85,12 @@
     },
 
     activated(){
-      console.log('huoyuede');
+      // console.log('huoyuede');
       this.$refs.scroll. backtop(0,this.saveY,0)
 
     },
     deactivated(){
-      console.log('likaide');
+      // console.log('likaide');
       this.saveY = this.$refs.scroll.getScrollY()
 
 

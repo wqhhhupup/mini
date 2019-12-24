@@ -13,6 +13,11 @@ export const itemImgMixin = {
       this.imgRefresh()
     }
     this.$bus.$on('itemImgLoad',this.itemImgListener)
+    this.$toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+      duration:1000
+    })
 
   }
 }

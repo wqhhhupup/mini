@@ -11,7 +11,7 @@
        <detail-comment-info :commentInfo="commentInfo" ref="comment"></detail-comment-info>
        <good-list :goods="recommendInfo" ref="recommend"></good-list>
     </scroll>
-     <detail-bottom-bar></detail-bottom-bar>
+     <detail-bottom-bar @addCart="addToCart"></detail-bottom-bar>
    </div>
 </template>
 
@@ -66,11 +66,12 @@
       created() {
           this.iid = this.$route.params.iid
           getDetail(this.iid).then(res=>{
-            console.log(res);
+            // console.log(res);
             const data = res.result
             this.topImages = data.itemInfo.topImages
 
             this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services)
+            console.log(this.goods);
             // 继续请求详情页面的信息
             this.shopInfo = data.shopInfo
             // 请求接下来的图片的信息
@@ -100,6 +101,7 @@
         },100)
       },
       mounted() {
+
       },
       destroyed() {
         this.$bus.$off('itemImgLoad',this.itemImgListener)
@@ -123,6 +125,18 @@
 
             }
           }
+        },
+        addToCart(){
+          const product = {};
+          product.image = this.topImages[0]
+          product.title = this.goods.title
+          product.desc = this.goods.desc
+          product.realPrice = this.goods.lowNowPrice
+          product.iid = this.iid
+          this.$store.dispatch('addCart',product)
+          this.$toast.success('添加购物车成功哦',2000)
+
+
         }
       }
     }
