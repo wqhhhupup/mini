@@ -2,8 +2,8 @@ import axios from 'axios'
 export function request(config) {
   //创建axios实例
 
-  const url = "http://106.54.54.237:8000/api/v1";
-  const url2 = "http://123.207.32.32:8000/api/vip";
+  const url = "http://123.207.32.32:8000/api/wh";
+  const url2 = "http://106.54.54.237:8000/api/wh";
   const instance = axios.create({
     baseURL:url||url2,
     timeout:5000

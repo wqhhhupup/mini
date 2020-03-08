@@ -1,4 +1,4 @@
-import {request} from "./require";
+import { request } from "./require";
 export function getHomeMutidata() {
   return request({
     url:'/home/multidata'
